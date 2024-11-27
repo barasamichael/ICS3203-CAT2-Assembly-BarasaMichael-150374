@@ -1,9 +1,58 @@
-; Challenges
-;-----------
-; Accessing array elements via memory addresses required carefull consideration
-; Out-of-bounds (Segmentation error) was a head-ache
-; Swapping elements was not straightforward and required additional memory address
-
+; OVERALL CHALLENGES
+; ==================
+; 1. Accessing array elements via memory addresses required carefull consideration
+; 2. Out-of-bounds (Segmentation error) was a head-ache
+; 3. Swapping elements was not straightforward and required additional memory address
+;
+; ANALYSIS OF STEPS AND CHALLENGES
+; ================================
+;
+; Input Validation and Storage
+; ----------------------------
+; Process
+; 	- Input digits (0-9) are read and validated using ASCII value comparisons.
+; 	- Valid digits are stored sequentially in an array at a memory address.
+;
+; Challenge
+; 	- Ensuring the input is within the specified range avoids invalid 
+;	  memory writes.
+; 	- Carefully managing array bounds prevents segmentation faults.
+;
+; Initialization of Pointers for Reversal
+; ---------------------------------------
+; Process
+; 	- Two indices (r12 for the left, r13 for the right) are initialized to 
+;	  point to the array's start and end.
+; 
+; Challenge
+; 	- Calculating the correct indices, especially in low-level assembly 
+;	  where offsets are managed manually.
+;
+; Reversal Loop (Swapping Elements)
+; ---------------------------------
+; Process
+; 	- The loop runs until the indices meet or cross.
+; 	- Values at the left and right pointers are swapped:
+; 	- Values are loaded from memory using the pointers.
+; 	- They are temporarily stored in registers (al and bl) for swapping.
+; 	- Values are written back to their swapped locations in memory.
+; 	- The pointers are adjusted (left incremented, right decremented).
+;
+; Challenge
+; 	- The swap requires additional registers to temporarily store values. 
+;	  Careful use of registers is essential to avoid overwriting data.
+; 	- Memory alignment issues may occur if pointer calculations are incorrect.
+; 
+; Print the Reversed Array
+; ------------------------
+; Process
+; 	- The array is traversed, and each value is printed to standard output.
+; 	- A newline character is printed after each digit for clarity.
+;
+; Challenge
+; 	- Ensuring that the correct memory location is accessed during each iteration.
+; 	- Properly resetting the loop counter for printing and handling edge 
+;	  cases (e.g., corrupted indices).
 
 section .data
     prompt db "Enter a single digit (0-9): ", 0       ; Prompt user for input
