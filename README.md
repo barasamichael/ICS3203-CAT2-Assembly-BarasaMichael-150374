@@ -5,7 +5,7 @@ This repository contains assembly language programs that demonstrate basic funct
 
 ## **Programs Overview**
 ### **1. Sensor Control Simulation**
-- **Purpose:**  
+- **Purpose**  
   Simulates the behavior of a system that controls a motor and an alarm based on a sensor's input value.  
   - **Input:** A sensor value (integer).  
   - **Output:** Displays the status of the motor (ON/OFF) and alarm (ON/OFF) based on thresholds:
@@ -14,20 +14,20 @@ This repository contains assembly language programs that demonstrate basic funct
     - High Level: Motor ON, Alarm ON.
 
 ### **2. Factorial Calculation**
-- **Purpose:**  
+- **Purpose**  
   Computes the factorial of a user-provided number between 0 and 12.  
   - **Input:** A number within the valid range (0-12).  
   - **Output:** Displays the factorial of the input.  
   Handles invalid inputs gracefully by printing an error message.
 
 ### **3. Conditional Logic Program**
-- **Purpose:**  
+- **Purpose**  
   Determines whether an input number is positive, negative, or zero using conditional branching (JE, JL, and JMP). 
   - **Input:** A random number. 
   - **Output:** The appropriate message ("POSITIVE", "NEGATIVE", "ZERO") based on the number's value.
 
 ### **4. Array Reversal Program**
-- **Purpose:**  
+- **Purpose**  
   Accepts five single-digit inputs, stores them in an array, reverses the array in place, and prints the reversed array.
   - **Input:** Five digits.  
   - **Output:** Reversed array, character by character, with each element on a new line.
@@ -36,32 +36,40 @@ This repository contains assembly language programs that demonstrate basic funct
 
 ## **Compilation and Execution**
 
-### **Requirements:**
+### **Requirements**
 - A Linux environment with `nasm` (Netwide Assembler) and `ld` (Linker) installed.
 - A terminal for input/output.
 
-### **Steps:**
+### **Steps**
 
-1. **Assemble the code:**  
-   Use `nasm` to assemble the `.asm` file into an object file.
-   ```bash
-   nasm -f elf64 program_name.asm -o program_name.o
-   ```
-   Replace `program_name.asm` with the name of the file (e.g., `sensor_control.asm`).
+**1. Assemble the Code**
+Use the `nasm` assembler to convert the `.asm` file into an object file `.o`. For each file:
+```bash
+nasm -f elf64 array_reversal.asm -o array_reversal.o
+nasm -f elf64 conditional.asm -o conditional.o
+nasm -f elf64 factorial.asm -o factorial.o
+nasm -f elf64 sensor.asm -o sensor.o
+```
 
-2. **Link the object file:**  
-   Link the object file to create an executable.
-   ```bash
-   ld program_name.o -o program_name
-   ```
+**2. Link the Object File**
+Link the generated object files using the `ld` linker to create executable files `.x`. For each file:
+```bash
+ld array_reversal.o -o array_reversal.x
+ld conditional.o -o conditional.x
+ld factorial.o -o factorial.x
+ld sensor.o -o sensor.x
+```
 
-3. **Run the program:**  
-   Execute the compiled program.
-   ```bash
-   ./program_name
-   ```
-
+**3. Run the Program**
+Execute the compiled programs. For each file:
+```bash
+./array_reversal.x
+./conditional.x
+./factorial.x
+./sensor.x
+```
 ---
+
 ## **Challenges**
 
 ### **Overall Challenges**
